@@ -51,9 +51,10 @@ public static class TechPriestPatches {
                 var copy = CopyBlueprint(__result);
                 try {
                     var c = copy.Components.OfType<AddFeaturesToLevelUp>().Where(c => c.Group == FeatureGroup.ChargenOccupation).First();
+                    var index = copy.Components.IndexOf(c);
                     var techPriestOccupation = ResourcesLibrary.BlueprintsCache.Load("777d9f9c570443b59120e78f2d9dd515") as BlueprintFeature;
                     c.m_Features = new[] { techPriestOccupation.ToReference<BlueprintFeatureReference>() }.AddRangeToArray(c.m_Features);
-                    copy.Components[1] = c;
+                    copy.Components[index] = c;
                     __result = copy;
                 } catch (Exception e) {
                     Main.log.Log(e.ToString());

@@ -27,6 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Kingmaker.Visual.CharacterSystem;
 using Code.GameCore.ElementsSystem;
+using Owlcat.Runtime.Core;
 
 namespace PlayableX.PlayableAdeptaSororitas; 
 public static class AdeptaSororitasPatches {
@@ -50,9 +51,10 @@ public static class AdeptaSororitasPatches {
                 var copy = CopyBlueprint(__result);
                 try {
                     var c = copy.Components.OfType<AddFeaturesToLevelUp>().Where(c => c.Group == FeatureGroup.ChargenOccupation).First();
+                    var index = copy.Components.IndexOf(c);
                     var adeptaSororitasOccupation = ResourcesLibrary.BlueprintsCache.Load("b6962fcc54054af98961dd9a6c0f9e18") as BlueprintFeature;
                     c.m_Features = new[] { adeptaSororitasOccupation.ToReference<BlueprintFeatureReference>() }.AddRangeToArray(c.m_Features);
-                    copy.Components[1] = c;
+                    copy.Components[index] = c;
                     __result = copy;
                 } catch (Exception e) {
                     Main.log.Log(e.ToString());

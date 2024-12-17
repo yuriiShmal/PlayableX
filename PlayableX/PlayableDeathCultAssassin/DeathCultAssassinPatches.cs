@@ -51,9 +51,10 @@ public static class DeathCultAssassinPatches {
                 var copy = CopyBlueprint(__result);
                 try {
                     var c = copy.Components.OfType<AddFeaturesToLevelUp>().Where(c => c.Group == FeatureGroup.ChargenOccupation).First();
+                    var index = copy.Components.IndexOf(c);
                     var deathCultAssassinOccupation = ResourcesLibrary.BlueprintsCache.Load("9b090810169e4a42b22afd5995d3720d") as BlueprintFeature;
                     c.m_Features = new[] { deathCultAssassinOccupation.ToReference<BlueprintFeatureReference>() }.AddRangeToArray(c.m_Features);
-                    copy.Components[1] = c;
+                    copy.Components[index] = c;
                     __result = copy;
                 } catch (Exception e) {
                     Main.log.Log(e.ToString());
