@@ -82,9 +82,9 @@ public static class RangerPatches {
             }
         }
     }
-    // Find the damn eldar clothes. The best I could find is ranger armour, lets hope that works
-    // 
-    private static List<string> EEIds = new() { "2170e052928e4ab79a3548c34582f201" };
+    // Find the eldar clothes. The best I could find is ranger armour, lets hope that works
+    // Also adding the eldar body KEE, I hope I understood it correctly
+    private static List<string> EEIds = new() { "2170e052928e4ab79a3548c34582f201", "f1703c0657ca42ee84bc12979b483164"};
     [HarmonyPatch(typeof(CharGenContextVM), nameof(CharGenContextVM.CompleteCharGen))]
     internal static class CharGenContextVM_ComplteCharGen_Patch {
         [HarmonyPrefix]
