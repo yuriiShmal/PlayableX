@@ -28,6 +28,7 @@ using System.Threading.Tasks;
 using Kingmaker.Visual.CharacterSystem;
 using Code.GameCore.ElementsSystem;
 using Owlcat.Runtime.Core;
+using Kingmaker.UnitLogic.FactLogic;
 
 namespace PlayableX.PlayableRanger; 
 public static class RangerPatches {
