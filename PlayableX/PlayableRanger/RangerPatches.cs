@@ -85,7 +85,7 @@ public static class RangerPatches {
     }
     // Find the eldar clothes. The best I could find is ranger armour, lets hope that works
     // Also adding the eldar body KEE, I hope I understood it correctly
-    private static List<string> EEIds = new() { "2170e052928e4ab79a3548c34582f201", "f1703c0657ca42ee84bc12979b483164"};
+    private static List<string> EEIds = new() { "4d202ae52f884331849aeb3ee470a634", "f1703c0657ca42ee84bc12979b483164"};
     [HarmonyPatch(typeof(CharGenContextVM), nameof(CharGenContextVM.CompleteCharGen))]
     internal static class CharGenContextVM_ComplteCharGen_Patch {
         [HarmonyPrefix]
@@ -95,6 +95,8 @@ public static class RangerPatches {
             if (CreateRanger && feature != null) {
                 RangerEntityPartStorage.perSave.AddClothes[resultUnit.UniqueId] = EEIds;
                 RangerEntityPartStorage.SavePerSaveSettings();
+                var rangerOccupationFeature = = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
+                resultUnit.AddFact(rangerOccupationFeature);
                 var eldarBackgroundFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
                 resultUnit.AddFact(eldarBackgroundFeature);
                 var rangerFeatureList = ResourcesLibrary.BlueprintsCache.Load("12e72ea7bb6b491fa25f93b2771132ff") as BlueprintFeature;
