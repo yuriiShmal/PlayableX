@@ -74,7 +74,7 @@ public static class RangerPatches {
         [HarmonyPostfix]
         private static void Meet(ref bool __result, Prerequisite __instance, IBaseUnitEntity unit) {
             var rangerOccupation = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
-            Feature feature = unit.ToBaseUnitEntity().Facts.Get(rangerOccupation) as Feature;
+            Feature feature = resultUnit.Facts.Get(rangerOccupation) as Feature;
             if (CreateRanger && feature != null) {
                 var key = __instance.Owner.name;
                 if ((key?.Contains("DarkestHour") ?? false) || (key?.Contains("MomentOfTriumph") ?? false)) {
@@ -85,6 +85,7 @@ public static class RangerPatches {
     }
     // Find the eldar clothes. The best I could find is ranger armour, lets hope that works
     // Also adding the eldar body KEE, I hope I understood it correctly
+    // 
     private static List<string> EEIds = new() { "4d202ae52f884331849aeb3ee470a634", "f1703c0657ca42ee84bc12979b483164"};
     [HarmonyPatch(typeof(CharGenContextVM), nameof(CharGenContextVM.CompleteCharGen))]
     internal static class CharGenContextVM_ComplteCharGen_Patch {
@@ -95,10 +96,8 @@ public static class RangerPatches {
             if (CreateRanger && feature != null) {
                 RangerEntityPartStorage.perSave.AddClothes[resultUnit.UniqueId] = EEIds;
                 RangerEntityPartStorage.SavePerSaveSettings();
-                var rangerOccupationFeature = = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
-                resultUnit.AddFact(rangerOccupationFeature);
-                var eldarBackgroundFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
-                resultUnit.AddFact(eldarBackgroundFeature);
+                var rangerBackLoreFeature = = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
+                resultUnit.AddFact(rangerBackLoreFeature);
                 var rangerFeatureList = ResourcesLibrary.BlueprintsCache.Load("12e72ea7bb6b491fa25f93b2771132ff") as BlueprintFeature;
                 var facts = (rangerFeatureList?.Components.Get(0, null) as AddFacts)?.Facts;
                 foreach (var feat in facts) {
