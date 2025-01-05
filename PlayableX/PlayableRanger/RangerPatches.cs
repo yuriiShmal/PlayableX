@@ -94,6 +94,14 @@ public static class RangerPatches {
             if (CreateRanger && feature != null) {
                 RangerEntityPartStorage.perSave.AddClothes[resultUnit.UniqueId] = EEIds;
                 RangerEntityPartStorage.SavePerSaveSettings();
+                var eldarBackgroundFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
+                resultUnit.AddFact(eldarBackgroundFeature);
+                var rangerFeatureList = ResourcesLibrary.BlueprintsCache.Load("12e72ea7bb6b491fa25f93b2771132ff") as BlueprintFeature;
+                var facts = (rangerFeatureList?.Components.Get(0, null) as AddFacts)?.Facts;
+                foreach (var feat in facts) {
+                    resultUnit.AddFact(feat);
+                }
+                
                 CreateRanger = false;
             }
         }
