@@ -75,7 +75,7 @@ public static class RangerPatches {
         private static void Meet(ref bool __result, Prerequisite __instance, IBaseUnitEntity unit) {
             //THIS SHOULD PROBABLY BE DIFFERENT... BUT WHAT???
             var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
-            Feature feature = resultUnit.Facts.Get(rangerBackLoreFeature) as Feature;
+            Feature feature = unit.ToBaseUnitEntity().Facts.Get(rangerBackLoreFeature) as Feature;
             if (CreateRanger && feature != null) {
                 var key = __instance.Owner.name;
                 if ((key?.Contains("DarkestHour") ?? false) || (key?.Contains("MomentOfTriumph") ?? false)) {
@@ -144,7 +144,7 @@ public static class RangerPatches {
         private static void CollectMechanicEntitities(DollState __instance, ref IEnumerable<EquipmentEntityLink> __result, BaseUnitEntity unit) {
             //THIS SHOULD PROBABLY BE DIFFERENT... BUT WHAT???
             var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
-            Feature feature = resultUnit.Facts.Get(rangerBackLoreFeature) as Feature;
+            Feature feature = unit.Facts.Get(rangerBackLoreFeature) as Feature;
             if (CreateRanger && feature != null) {
                 var eels = EEIds.Select(id => new EquipmentEntityLink() { AssetId = id });
                 var res = __result.ToList();
