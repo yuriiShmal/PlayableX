@@ -53,8 +53,8 @@ public static class RangerPatches {
                 try {
                     var c = copy.Components.OfType<AddFeaturesToLevelUp>().Where(c => c.Group == FeatureGroup.ChargenOccupation).First();
                     var index = copy.Components.IndexOf(c);
-                    var rangerOccupation = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
-                    c.m_Features = new[] { rangerOccupation.ToReference<BlueprintFeatureReference>() }.AddRangeToArray(c.m_Features);
+                    var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
+                    c.m_Features = new[] { rangerBackLoreFeature.ToReference<BlueprintFeatureReference>() }.AddRangeToArray(c.m_Features);
                     copy.Components[index] = c;
                     __result = copy;
                 } catch (Exception e) {
@@ -75,7 +75,7 @@ public static class RangerPatches {
         private static void Meet(ref bool __result, Prerequisite __instance, IBaseUnitEntity unit) {
             //THIS SHOULD PROBABLY BE DIFFERENT... BUT WHAT???
             var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
-            Feature feature = resultUnit.Facts.Get(rangerBackLoreFeature) as Feature;
+            Feature feature = unit.ToBaseUnitEntity().Facts.Get(rangerBackLoreFeature) as Feature;
             if (CreateRanger && feature != null) {
                 var key = __instance.Owner.name;
                 if ((key?.Contains("DarkestHour") ?? false) || (key?.Contains("MomentOfTriumph") ?? false)) {
