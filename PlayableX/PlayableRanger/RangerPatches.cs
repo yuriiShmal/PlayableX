@@ -73,8 +73,9 @@ public static class RangerPatches {
     internal static class Prerequisite_Meet_Patch {
         [HarmonyPostfix]
         private static void Meet(ref bool __result, Prerequisite __instance, IBaseUnitEntity unit) {
-            var rangerOccupation = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
-            Feature feature = resultUnit.Facts.Get(rangerOccupation) as Feature;
+            //THIS SHOULD PROBABLY BE DIFFERENT... BUT WHAT???
+            var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
+            Feature feature = resultUnit.Facts.Get(rangerBackLoreFeature) as Feature;
             if (CreateRanger && feature != null) {
                 var key = __instance.Owner.name;
                 if ((key?.Contains("DarkestHour") ?? false) || (key?.Contains("MomentOfTriumph") ?? false)) {
@@ -85,20 +86,21 @@ public static class RangerPatches {
     }
     // Find the eldar clothes. The best I could find is ranger armour, lets hope that works
     // Also adding the eldar body KEE, I hope I understood it correctly
-    // 
+    // Yrliet
     private static List<string> EEIds = new() { "4d202ae52f884331849aeb3ee470a634", "f1703c0657ca42ee84bc12979b483164"};
     [HarmonyPatch(typeof(CharGenContextVM), nameof(CharGenContextVM.CompleteCharGen))]
     internal static class CharGenContextVM_ComplteCharGen_Patch {
         [HarmonyPrefix]
         private static void CompleteCharGen(BaseUnitEntity resultUnit) {
-            var rangerOccupation = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
-            Feature feature = resultUnit.Facts.Get(rangerOccupation) as Feature;
+            //THIS SHOULD PROBABLY BE DIFFERENT... BUT WHAT???
+            var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
+            Feature feature = resultUnit.Facts.Get(rangerBackLoreFeature) as Feature;
             if (CreateRanger && feature != null) {
                 RangerEntityPartStorage.perSave.AddClothes[resultUnit.UniqueId] = EEIds;
                 RangerEntityPartStorage.SavePerSaveSettings();
-                var rangerBackLoreFeature = = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
-                resultUnit.AddFact(rangerBackLoreFeature);
-                var rangerFeatureList = ResourcesLibrary.BlueprintsCache.Load("12e72ea7bb6b491fa25f93b2771132ff") as BlueprintFeature;
+                var rangerOccupationFeature = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
+                resultUnit.AddFact(rangerOccupationFeature);
+                var rangerFeatureList = ResourcesLibrary.BlueprintsCache.Load("1032684b314d43258e9a3fa1db44d570") as BlueprintFeature;
                 var facts = (rangerFeatureList?.Components.Get(0, null) as AddFacts)?.Facts;
                 foreach (var feat in facts) {
                     resultUnit.AddFact(feat);
@@ -140,8 +142,9 @@ public static class RangerPatches {
     internal static class DollState_CollectMechanicEntities_Patch {
         [HarmonyPostfix]
         private static void CollectMechanicEntitities(DollState __instance, ref IEnumerable<EquipmentEntityLink> __result, BaseUnitEntity unit) {
-            var rangerOccupation = ResourcesLibrary.BlueprintsCache.Load("33497e0597e64570bb5cf78b19a95d96") as BlueprintFeature;
-            Feature feature = unit.Facts.Get(rangerOccupation) as Feature;
+            //THIS SHOULD PROBABLY BE DIFFERENT... BUT WHAT???
+            var rangerBackLoreFeature = ResourcesLibrary.BlueprintsCache.Load("b8431cb469fb46498b91ec35fda10681") as BlueprintFeature;
+            Feature feature = resultUnit.Facts.Get(rangerBackLoreFeature) as Feature;
             if (CreateRanger && feature != null) {
                 var eels = EEIds.Select(id => new EquipmentEntityLink() { AssetId = id });
                 var res = __result.ToList();
