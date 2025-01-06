@@ -98,18 +98,8 @@ public static class RangerPatches {
             if (CreateRanger && feature != null) {
                 RangerEntityPartStorage.perSave.AddClothes[resultUnit.UniqueId] = EEIds;
                 RangerEntityPartStorage.SavePerSaveSettings();
-                var yrlietFeatureAbilities = ResourcesLibrary.BlueprintsCache.Load("48640d494f80431fb380facdead79f7c") as BlueprintFeature;
-                var facts = (yrlietFeatureAbilities?.Components.Get(0, null) as AddFacts)?.Facts;
-                foreach (var feat in facts) {
-                    resultUnit.AddFact(feat);
-                }
-                var yrlietFeatureBuffs = ResourcesLibrary.BlueprintsCache.Load("93f7728057294216a2cd2e8814568db1") as BlueprintFeature;
-                var facts = (yrlietFeatureBuffs?.Components.Get(0, null) as AddFacts)?.Facts;
-                foreach (var feat in facts) {
-                    resultUnit.AddFact(feat);
-                }
-                var yrlietFeatureCareers = ResourcesLibrary.BlueprintsCache.Load("6c64e2af42c34e5187eef93fa9e77f55") as BlueprintFeature;
-                var facts = (yrlietFeatureCareers?.Components.Get(0, null) as AddFacts)?.Facts;
+                var yrlietFeatureList = ResourcesLibrary.BlueprintsCache.Load("1c05dd79137849f596a36f3df633cc91") as BlueprintFeature;
+                var facts = (yrlietFeatureList?.Components.Get(0, null) as AddFacts)?.Facts;
                 foreach (var feat in facts) {
                     resultUnit.AddFact(feat);
                 }
