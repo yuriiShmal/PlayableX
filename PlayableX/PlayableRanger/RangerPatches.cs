@@ -98,11 +98,13 @@ public static class RangerPatches {
             if (CreateRanger && feature != null) {
                 RangerEntityPartStorage.perSave.AddClothes[resultUnit.UniqueId] = EEIds;
                 RangerEntityPartStorage.SavePerSaveSettings();
-                var yrlietFeatureList = ResourcesLibrary.BlueprintsCache.Load("1c05dd79137849f596a36f3df633cc91") as BlueprintFeature;
+                var yrlietFeatureList = ResourcesLibrary.BlueprintsCache.Load("12e72ea7bb6b491fa25f93b2771132ff") as BlueprintFeature;
                 var facts = (yrlietFeatureList?.Components.Get(0, null) as AddFacts)?.Facts;
                 foreach (var feat in facts) {
                     resultUnit.AddFact(feat);
                 }
+                var aeldariArmorFeature = ResourcesLibrary.BlueprintsCache.Load("590cb5c394ee4b5eb213121c96063dec") as BlueprintFeature;
+                resultUnit.AddFact(aeldariArmorFeature);
                 CreateRanger = false;
             }
         }
