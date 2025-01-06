@@ -87,7 +87,7 @@ public static class RangerPatches {
     // Find the eldar clothes. The best I could find is ranger armour, lets hope that works
     // Also adding the eldar body KEE, I hope I understood it correctly
     // Yrliet
-    private static List<string> EEIds = new() { "4d202ae52f884331849aeb3ee470a634" };
+    private static List<string> EEIds = new() { };
     [HarmonyPatch(typeof(CharGenContextVM), nameof(CharGenContextVM.CompleteCharGen))]
     internal static class CharGenContextVM_ComplteCharGen_Patch {
         [HarmonyPrefix]
